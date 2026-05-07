@@ -1,0 +1,178 @@
+// auteur : Yusuf Simsek
+// L'Essence D'Or - Parfum Webshop
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — L'Essence D'Or</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="navbar">
+  <div class="nav-inner">
+    <div id="logo">
+      <a href="index.html">L'Essence <span>D'Or</span></a>
+    </div>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="index.html#producten-sectie">Producten</a>
+      <a href="deals.html" class="deals-link">Deals </a>
+    </nav>
+    <div class="nav-rechts">
+      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#producten-sectie">Producten</a>
+  <a href="deals.html">Deals </a>
+  <a href="checkout.html">Afrekenen</a>
+</nav>
+
+
+<main class="product-pagina">
+
+  <nav class="breadcrumb" aria-label="Navigatiepad">
+    <a href="index.html">Home</a>
+    <span class="pijl">›</span>
+    <a href="index.html#producten-sectie">Producten</a>
+    <span class="pijl">›</span>
+    <span class="huidig" id="breadcrumbNaam">Product</span>
+  </nav>
+
+  <div id="productInhoud">
+
+    <div class="detail-grid">
+
+      <div class="foto-kolom">
+        <div class="hoofd-foto">
+          <img id="hoofdImg" src="" alt="Product afbeelding">
+        </div>
+        <div class="thumb-rij">
+          <img class="thumb" src="" alt="">
+          <img class="thumb" src="" alt="">
+          <img class="thumb" src="" alt="">
+          <img class="thumb" src="" alt="">
+        </div>
+      </div>
+
+      <article class="info-kolom">
+        <p class="product-merk" id="pMerk"></p>
+        <h1 class="product-naam" id="pNaam"></h1>
+        <p class="product-ml-type" id="pMl"></p>
+
+        <p class="score-rij">
+          <span id="pSterren"></span>
+          <span id="pScoreTekst"></span>
+        </p>
+
+        <p class="prijs-blok">
+          <span class="prijs-groot" id="pPrijs"></span>
+          <span class="prijs-oud-groot" id="pOudPrijs"></span>
+          <span class="korting-badge" id="pKorting"></span>
+        </p>
+
+        <p class="beschrijving" id="pBeschrijving"></p>
+
+        <div class="noten-grid">
+          <div class="noot">
+            <p class="noot-label">Top noten</p>
+            <p class="noot-waarde" id="pTopNoten"></p>
+          </div>
+          <div class="noot">
+            <p class="noot-label">Hart noten</p>
+            <p class="noot-waarde" id="pHartNoten"></p>
+          </div>
+          <div class="noot">
+            <p class="noot-label">Basis noten</p>
+            <p class="noot-waarde" id="pBasisNoten"></p>
+          </div>
+        </div>
+
+        <div class="cart-rij">
+          <div class="aantal-wrap">
+            <button class="aantal-btn" id="minBtn" aria-label="Minder">−</button>
+            <input type="number" id="aantalInput" value="1" min="1" max="10" aria-label="Aantal">
+            <button class="aantal-btn" id="plusBtn" aria-label="Meer">+</button>
+          </div>
+          <button class="cart-toevoeg-btn" id="addCartBtn">In winkelmand</button>
+        </div>
+
+        <div class="geur-tags">
+          <span class="geur-tag" id="pGeur"></span>
+          <span class="geur-tag">EDP</span>
+        </div>
+      </article>
+
+    </div>
+
+
+    <section class="reviews-sectie">
+      <div class="reviews-header">
+        <h2>Reviews</h2>
+        <div class="gem-score">
+          <span class="gem-getal" id="reviewScore"></span>
+          <div>
+            <p id="reviewSterren"></p>
+            <small id="reviewAantal"></small>
+          </div>
+        </div>
+      </div>
+      <ul class="reviews-lijst" id="reviewsLijst"></ul>
+    </section>
+
+
+    <section class="gerelateerd-sectie">
+      <h2>Misschien ook leuk</h2>
+      <ul class="product-grid" id="gerelateerdGrid"></ul>
+    </section>
+
+  </div>
+
+</main>
+
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-logo">L'Essence <span>D'Or</span></p>
+    <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
+    <nav class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Voorwaarden</a>
+    </nav>
+  </div>
+</footer>
+
+
+<aside id="cartPanel">
+  <div class="cart-header">
+    <h4>Jouw winkelwagen</h4>
+    <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
+  </div>
+  <ul id="cartLijst"></ul>
+  <div id="cartSummary">
+    <p id="verzendInfo"></p>
+    <div class="cart-totaal-rij">
+      <span>Totaal</span>
+      <strong id="cartTotaal">€0,00</strong>
+    </div>
+    <a href="checkout.html" class="btn-naar-checkout">Afrekenen →</a>
+    <button id="doorwinkelBtn">← Verder winkelen</button>
+  </div>
+</aside>
+
+<div id="cartOverlay"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+<script src="product.js"></script>
+
+</body>
+</html>

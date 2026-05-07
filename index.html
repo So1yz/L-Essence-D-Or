@@ -1,0 +1,243 @@
+// auteur : Yusuf Simsek
+// L'Essence D'Or - Parfum Webshop
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Essence D'Or — Luxury Parfum</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="navbar">
+  <div class="nav-inner">
+    <div id="logo">
+      <a href="index.html">L'Essence <span>D'Or</span></a>
+    </div>
+
+    <nav id="mainNav">
+      <a href="index.html" class="actief">Home</a>
+      <a href="index.html#producten-sectie">Producten</a>
+      <a href="index.html#over-ons">Over ons</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="deals.html" class="deals-link">Deals </a>
+    </nav>
+
+    <div class="nav-rechts">
+      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#producten-sectie">Producten</a>
+  <a href="index.html#over-ons">Over ons</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="deals.html">Deals </a>
+</nav>
+
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-verduistering"></div>
+  <div class="hero-tekst">
+    <span class="hero-label">Nieuw binnen — Lente 2026</span>
+    <h1>Voel de<br><em>geur van luxe</em></h1>
+    <p class="hero-sub">Exclusieve parfums van de grootste merken ter wereld. Authentiek, direct geleverd.</p>
+    <div class="hero-knoppen">
+      <a href="#producten-sectie" class="btn-goud">Bekijk collectie</a>
+      <a href="#over-ons" class="btn-outline">Ons verhaal</a>
+    </div>
+  </div>
+</section>
+
+
+<aside class="merken-strip" aria-label="Merken">
+  <div class="merken-ticker" aria-hidden="true">
+    <span>✦ Dior</span><span class="scheidsteken">·</span>
+    <span>Chanel</span><span class="scheidsteken">·</span>
+    <span>Tom Ford</span><span class="scheidsteken">·</span>
+    <span>Creed</span><span class="scheidsteken">·</span>
+    <span>YSL</span><span class="scheidsteken">·</span>
+    <span>Jean Paul Gaultier</span><span class="scheidsteken">·</span>
+    <span>Paco Rabanne</span><span class="scheidsteken">·</span>
+    <span>Giorgio Armani</span><span class="scheidsteken">·</span>
+    <span>Versace</span><span class="scheidsteken">·</span>
+    <span>Hermès</span><span class="scheidsteken">·</span>
+    <span>Hugo Boss</span><span class="scheidsteken">·</span>
+    <span>Viktor &amp; Rolf</span><span class="scheidsteken">·</span>
+    <span>Maison Francis Kurkdjian</span><span class="scheidsteken">·</span>
+    <!-- duplicaat voor naadloos effect -->
+    <span>✦ Dior</span><span class="scheidsteken">·</span>
+    <span>Chanel</span><span class="scheidsteken">·</span>
+    <span>Tom Ford</span><span class="scheidsteken">·</span>
+    <span>Creed</span><span class="scheidsteken">·</span>
+    <span>YSL</span><span class="scheidsteken">·</span>
+    <span>Jean Paul Gaultier</span><span class="scheidsteken">·</span>
+    <span>Paco Rabanne</span><span class="scheidsteken">·</span>
+    <span>Giorgio Armani</span><span class="scheidsteken">·</span>
+    <span>Versace</span><span class="scheidsteken">·</span>
+    <span>Hermès</span><span class="scheidsteken">·</span>
+    <span>Hugo Boss</span><span class="scheidsteken">·</span>
+    <span>Viktor &amp; Rolf</span><span class="scheidsteken">·</span>
+    <span>Maison Francis Kurkdjian</span><span class="scheidsteken">·</span>
+  </div>
+</aside>
+
+
+<main id="producten-sectie">
+  <div class="sectie-hoofd">
+    <span class="goud-label">Handpicked selectie</span>
+    <h2>Onze Collectie</h2>
+    <p>De meest populaire geuren van dit moment</p>
+  </div>
+  <ul class="product-grid" id="productGrid"></ul>
+</main>
+
+
+<section id="over-ons">
+  <div class="over-ons-inner">
+    <article class="over-tekst">
+      <span class="goud-label">Ons verhaal</span>
+      <h2>Meer dan<br>alleen parfum</h2>
+      <p>L'Essence D'Or begon als een simpel idee: de mooiste geuren ter wereld toegankelijk maken voor iedereen. Geen dure warenhuizen, geen wachtrijen.</p>
+      <p>Elke fles die wij verkopen is 100% authentiek. We werken uitsluitend met officiële leveranciers en zijn er trots op dat onze klanten altijd terugkomen.</p>
+      <a href="#producten-sectie" class="btn-goud">Shop nu</a>
+    </article>
+    <figure class="over-figuur">
+      <div class="over-figuur-inhoud">
+        <span><img src="images/L'Essence D'Or.png" alt="L'Essence D'Or"></span>
+        
+      </div>
+    </figure>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="sectie-hoofd">
+    <span class="goud-label">Bereik ons</span>
+    <h2>Contact</h2>
+    <p>Vragen? Wij helpen je graag</p>
+  </div>
+
+  <div class="contact-grid">
+    <address class="contact-info">
+      <div class="contact-blok">
+        <span class="icon"></span>
+        <div>
+          <strong>Email</strong>
+          <p>info@lessencedor.nl</p>
+        </div>
+      </div>
+      <div class="contact-blok">
+        <span class="icon"></span>
+        <div>
+          <strong>Telefoon</strong>
+          <p>+31 20 123 4567</p>
+        </div>
+      </div>
+      <div class="contact-blok">
+        <span class="icon">📍</span>
+        <div>
+          <strong>Adres</strong>
+          <p>Keizersgracht 12, Amsterdam</p>
+        </div>
+      </div>
+    </address>
+
+    <form id="contactForm" class="contact-form" novalidate>
+      <input type="text" placeholder="Jouw naam" required>
+      <input type="email" placeholder="E-mailadres" required>
+      <textarea placeholder="Je bericht..." rows="5" required></textarea>
+      <button type="submit" class="btn-goud">Verstuur</button>
+    </form>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-logo">L'Essence <span>D'Or</span></p>
+    <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
+    <nav class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Voorwaarden</a>
+      <a href="#">Retourneren</a>
+    </nav>
+  </div>
+</footer>
+
+
+<aside id="cartPanel">
+  <div class="cart-header">
+    <h4>Jouw winkelwagen</h4>
+    <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
+  </div>
+  <ul id="cartLijst"></ul>
+  <div id="cartSummary">
+    <p id="verzendInfo"></p>
+    <div class="cart-totaal-rij">
+      <span>Totaal</span>
+      <strong id="cartTotaal">€0,00</strong>
+    </div>
+    <a href="checkout.html" class="btn-naar-checkout">Afrekenen →</a>
+    <button id="doorwinkelBtn">← Verder winkelen</button>
+  </div>
+</aside>
+
+<div id="cartOverlay"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("productGrid")
+
+    producten.forEach(p => {
+      const k = korting(p.prijs, p.oudePrijs)
+      const li = document.createElement("li")
+      li.className = "product-card"
+      li.innerHTML = `
+        ${k ? '<span class="badge">-' + k + '%</span>' : ""}
+        <button class="heart-btn" aria-label="Wishlist">♡</button>
+        <a href="product.html?id=${p.id}">
+          <figure>
+            <img src="${p.img}" alt="${p.naam}" loading="lazy">
+          </figure>
+        </a>
+        <section class="kaart-info">
+          <p class="kaart-merk">${p.merk}</p>
+          <h3><a href="product.html?id=${p.id}">${p.naam}</a></h3>
+          <p class="kaart-ml">${p.ml} ml</p>
+          <p class="kaart-prijzen">
+            <span class="prijs-nu">${euro(p.prijs)}</span>
+            ${k ? '<span class="prijs-oud">' + euro(p.oudePrijs) + "</span>" : ""}
+          </p>
+          <button class="add-btn" data-id="${p.id}">In winkelmand</button>
+        </section>
+      `
+      li.querySelector(".add-btn").onclick = () => { addToCart(p.id); renderCartSidebar() }
+      li.querySelector(".heart-btn").onclick = function() {
+        this.classList.toggle("liked")
+        this.textContent = this.classList.contains("liked") ? "♥" : "♡"
+      }
+      grid.appendChild(li)
+    })
+
+    document.getElementById("contactForm")?.addEventListener("submit", e => {
+      e.preventDefault()
+      showToast("Bericht verstuurd! We nemen snel contact op 📩")
+      e.target.reset()
+    })
+  })
+</script>
+
+</body>
+</html>

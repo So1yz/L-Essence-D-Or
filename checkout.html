@@ -1,0 +1,260 @@
+// auteur : Yusuf Simsek
+// L'Essence D'Or - Parfum Webshop
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afrekenen — L'Essence D'Or</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="navbar">
+  <div class="nav-inner">
+    <div id="logo">
+      <a href="index.html">L'Essence <span>D'Or</span></a>
+    </div>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="index.html#producten-sectie">Producten</a>
+      <a href="deals.html" class="deals-link">Deals 🔥</a>
+    </nav>
+    <div class="nav-rechts">
+      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#producten-sectie">Producten</a>
+  <a href="deals.html">Deals 🔥</a>
+  <a href="checkout.html">Afrekenen</a>
+</nav>
+
+
+<main class="checkout-pagina">
+
+  <h1>Afrekenen</h1>
+
+  <div class="stappen">
+    <span class="stap klaar"><span class="stap-num">✓</span> Winkelmand</span>
+    <span class="stap-lijn"></span>
+    <span class="stap actief"><span class="stap-num">2</span> Gegevens</span>
+    <span class="stap-lijn"></span>
+    <span class="stap"><span class="stap-num">3</span> Betaling</span>
+  </div>
+
+
+  <!-- leeg cart -->
+  <section id="leegCart" hidden>
+    <p>Je winkelwagen is leeg.</p>
+    <a href="index.html" class="btn-goud">Bekijk producten</a>
+  </section>
+
+
+  <!-- checkout layout -->
+  <div class="checkout-layout" id="checkoutLayout">
+
+    <form class="checkout-form" id="checkoutForm" novalidate>
+
+      <fieldset class="form-blok">
+        <legend><h3>Persoonlijke gegevens</h3></legend>
+
+        <div class="form-rij">
+          <div class="form-groep">
+            <label for="voornaam">Voornaam *</label>
+            <input type="text" id="voornaam" placeholder="Jan" autocomplete="given-name">
+            <span class="fout-tekst" id="fout-voornaam"></span>
+          </div>
+          <div class="form-groep">
+            <label for="achternaam">Achternaam *</label>
+            <input type="text" id="achternaam" placeholder="de Vries" autocomplete="family-name">
+            <span class="fout-tekst" id="fout-achternaam"></span>
+          </div>
+        </div>
+
+        <div class="form-rij enkel">
+          <div class="form-groep">
+            <label for="email">E-mailadres *</label>
+            <input type="email" id="email" placeholder="jan@email.nl" autocomplete="email">
+            <span class="fout-tekst" id="fout-email"></span>
+          </div>
+        </div>
+
+        <div class="form-rij enkel">
+          <div class="form-groep">
+            <label for="telefoon">Telefoonnummer</label>
+            <input type="tel" id="telefoon" placeholder="+31 6 12345678" autocomplete="tel">
+          </div>
+        </div>
+      </fieldset>
+
+
+      <fieldset class="form-blok">
+        <legend><h3>Bezorgadres</h3></legend>
+
+        <div class="form-rij enkel">
+          <div class="form-groep">
+            <label for="straat">Straat *</label>
+            <input type="text" id="straat" placeholder="Keizersgracht" autocomplete="address-line1">
+            <span class="fout-tekst" id="fout-straat"></span>
+          </div>
+        </div>
+
+        <div class="form-rij breed-links">
+          <div class="form-groep">
+            <label for="huisnr">Huisnummer *</label>
+            <input type="text" id="huisnr" placeholder="12A">
+            <span class="fout-tekst" id="fout-huisnr"></span>
+          </div>
+          <div class="form-groep">
+            <label for="toevoeging">Toevoeging</label>
+            <input type="text" id="toevoeging" placeholder="optioneel">
+          </div>
+        </div>
+
+        <div class="form-rij">
+          <div class="form-groep">
+            <label for="postcode">Postcode *</label>
+            <input type="text" id="postcode" placeholder="1234 AB" maxlength="7" autocomplete="postal-code">
+            <span class="fout-tekst" id="fout-postcode"></span>
+          </div>
+          <div class="form-groep">
+            <label for="stad">Stad *</label>
+            <input type="text" id="stad" placeholder="Amsterdam" autocomplete="address-level2">
+            <span class="fout-tekst" id="fout-stad"></span>
+          </div>
+        </div>
+
+        <div class="form-rij enkel">
+          <div class="form-groep">
+            <label for="land">Land</label>
+            <select id="land" autocomplete="country">
+              <option value="NL" selected>Nederland</option>
+              <option value="BE">België</option>
+              <option value="DE">Duitsland</option>
+              <option value="FR">Frankrijk</option>
+              <option value="GB">Verenigd Koninkrijk</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+
+      <fieldset class="form-blok">
+        <legend><h3>Betaalmethode</h3></legend>
+
+        <div class="betaal-opties">
+          <label class="betaal-optie actief">
+            <input type="radio" name="betaal" value="ideal" checked>
+            <span class="betaal-icon">🏦</span>
+            <div>
+              <p class="betaal-naam">iDEAL</p>
+              <p class="betaal-sub">Direct betalen via jouw bank</p>
+            </div>
+          </label>
+
+          <label class="betaal-optie">
+            <input type="radio" name="betaal" value="creditcard">
+            <span class="betaal-icon">💳</span>
+            <div>
+              <p class="betaal-naam">Creditcard</p>
+              <p class="betaal-sub">Visa, Mastercard, Amex</p>
+            </div>
+          </label>
+
+          <label class="betaal-optie">
+            <input type="radio" name="betaal" value="paypal">
+            <span class="betaal-icon">🅿️</span>
+            <div>
+              <p class="betaal-naam">PayPal</p>
+              <p class="betaal-sub">Veilig betalen via PayPal</p>
+            </div>
+          </label>
+
+          <label class="betaal-optie">
+            <input type="radio" name="betaal" value="achteraf">
+            <span class="betaal-icon">📃</span>
+            <div>
+              <p class="betaal-naam">Achteraf betalen</p>
+              <p class="betaal-sub">Betaal binnen 14 dagen na ontvangst</p>
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+    </form>
+
+
+    <!-- order samenvatting -->
+    <aside class="order-samen">
+      <h3>Jouw bestelling</h3>
+      <ul id="orderLijst"></ul>
+      <p class="samen-rij"><span>Subtotaal</span><span id="orderSubtotaal">—</span></p>
+      <p class="samen-rij"><span>Verzendkosten</span><span id="orderVerzend">—</span></p>
+      <p class="samen-rij eindtotaal"><span>Totaal</span><strong id="orderTotaal">—</strong></p>
+      <button class="betaal-btn" id="betaalBtn" type="button">Bestelling plaatsen</button>
+      <p class="veilig-tekst">🔒 Veilig en versleuteld betalen</p>
+    </aside>
+
+  </div>
+
+
+  <!-- bevestiging scherm -->
+  <section id="bevestiging" hidden>
+    <div class="check-cirkel" aria-hidden="true">✓</div>
+    <h2>Bestelling geplaatst!</h2>
+    <p>Bedankt voor je aankoop. Je ontvangt een bevestiging per e-mail.</p>
+    <p>Verwachte levertijd: <strong>1–2 werkdagen</strong></p>
+    <p id="bestelnr"></p>
+    <div class="bevestig-knoppen">
+      <a href="index.html" class="btn-goud">Terug naar home</a>
+      <a href="index.html#producten-sectie" class="btn-outline">Verder winkelen</a>
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-logo">L'Essence <span>D'Or</span></p>
+    <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
+    <nav class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Voorwaarden</a>
+    </nav>
+  </div>
+</footer>
+
+
+<aside id="cartPanel">
+  <div class="cart-header">
+    <h4>Jouw winkelwagen</h4>
+    <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
+  </div>
+  <ul id="cartLijst"></ul>
+  <div id="cartSummary">
+    <p id="verzendInfo"></p>
+    <div class="cart-totaal-rij">
+      <span>Totaal</span>
+      <strong id="cartTotaal">€0,00</strong>
+    </div>
+    <a href="checkout.html" class="btn-naar-checkout">Afrekenen →</a>
+    <button id="doorwinkelBtn">← Verder winkelen</button>
+  </div>
+</aside>
+
+<div id="cartOverlay"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+<script src="checkout.js"></script>
+
+</body>
+</html>

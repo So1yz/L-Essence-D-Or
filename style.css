@@ -1,0 +1,1493 @@
+/* CSS reset en basisstijlen */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --zwart: #080808;
+  --donker: #0f0f0f;
+  --grijs-donker: #161616;
+  --kaart: #1a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --goud: #c9a84c;
+  --goud-hover: #debb68;
+  --wit: #f0ece2;
+  --grijs: #777;
+  --rood: #c0392b;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Poppins', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--zwart);
+  color: var(--wit);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: var(--font-sans); }
+ul { list-style: none; }
+figure { margin: 0; }
+
+
+/* NAVBAR */
+
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+#navbar.scrolled {
+  background: rgba(8,8,8,0.98);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#logo a {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+}
+#logo span { color: var(--goud); }
+
+nav#mainNav {
+  display: flex;
+  gap: 28px;
+}
+
+nav#mainNav a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(240,236,226,0.65);
+  transition: color 0.2s;
+}
+nav#mainNav a:hover { color: var(--goud); }
+nav#mainNav a.actief { color: var(--goud); }
+nav#mainNav .deals-link { color: var(--goud); }
+
+.nav-rechts {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#cartBtn {
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--wit);
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+#cartBtn:hover { border-color: var(--goud); color: var(--goud); }
+
+#cartCount {
+  display: inline-block;
+  background: var(--goud);
+  color: var(--zwart);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 10px;
+  margin-left: 3px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--wit);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+#mobileMenu {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  background: var(--donker);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  z-index: 99;
+  flex-direction: column;
+  padding: 10px 28px 18px;
+}
+#mobileMenu.open { display: flex; }
+#mobileMenu a {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: rgba(240,236,226,0.7);
+}
+#mobileMenu a:last-child { border: none; color: var(--goud); }
+
+
+/* cart sidebar*/
+
+#cartPanel {
+  position: fixed;
+  right: -380px;
+  top: 0;
+  width: 360px;
+  height: 100vh;
+  background: #121212;
+  border-left: 1px solid rgba(201,168,76,0.18);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#cartPanel.open { right: 0; }
+
+#cartOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+#cartOverlay.open { display: block; }
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.cart-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+#sluitCart {
+  background: none;
+  border: none;
+  color: var(--grijs);
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+#sluitCart:hover { color: var(--wit); }
+
+#cartLijst {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#cartLijst li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.83rem;
+}
+
+#cartLijst li:last-child { border: none; }
+
+.cart-naam {
+  flex: 1;
+  line-height: 1.3;
+}
+.cart-naam small {
+  display: block;
+  color: var(--grijs);
+  font-size: 0.7rem;
+}
+.cart-prijs {
+  color: var(--goud);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cart-verwijder {
+  background: none;
+  border: none;
+  color: var(--grijs);
+  font-size: 0.7rem;
+  transition: color 0.15s;
+  padding: 2px 4px;
+}
+.cart-verwijder:hover { color: var(--rood); }
+
+#cartSummary {
+  padding: 16px 22px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#verzendInfo {
+  font-size: 0.74rem;
+  color: var(--goud);
+  text-align: center;
+  padding: 7px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+}
+
+.cart-totaal-rij {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+.cart-totaal-rij strong {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--goud);
+}
+
+.btn-naar-checkout {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--goud);
+  color: var(--zwart);
+  padding: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.btn-naar-checkout:hover { background: var(--goud-hover); }
+
+#doorwinkelBtn {
+  background: none;
+  border: none;
+  color: var(--grijs);
+  font-size: 0.76rem;
+  text-decoration: underline;
+  padding: 4px 0;
+  text-align: center;
+  width: 100%;
+  transition: color 0.2s;
+}
+#doorwinkelBtn:hover { color: var(--wit); }
+
+
+/*toast (melding!*/
+
+#toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--goud);
+  color: var(--zwart);
+  padding: 10px 24px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+#toast.zichtbaar {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* knoppen design */
+
+.btn-goud {
+  display: inline-block;
+  background: var(--goud);
+  color: var(--zwart);
+  padding: 12px 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-goud:hover { background: var(--goud-hover); transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--goud);
+  color: var(--goud);
+  padding: 11px 28px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--goud); color: var(--zwart); }
+
+
+/*  product card deels*/
+
+.product-card {
+  background: var(--kaart);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201,168,76,0.3);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.product-card figure {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #111;
+}
+.product-card figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover figure img { transform: scale(1.06); }
+
+.kaart-info { padding: 15px 17px 18px; }
+
+.kaart-merk {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--goud);
+  margin-bottom: 3px;
+}
+
+.kaart-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.kaart-info h3 a { color: var(--wit); }
+.kaart-info h3 a:hover { color: var(--goud); }
+
+.kaart-ml {
+  font-size: 0.7rem;
+  color: var(--grijs);
+  margin-bottom: 9px;
+}
+
+.kaart-prijzen {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.prijs-nu { font-size: 1.05rem; font-weight: 500; }
+.prijs-oud { font-size: 0.8rem; color: var(--grijs); text-decoration: line-through; }
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--goud);
+  color: var(--zwart);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  letter-spacing: 0.04em;
+  z-index: 2;
+}
+
+.heart-btn {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(8,8,8,0.7);
+  border: 1px solid var(--border);
+  color: var(--wit);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.2s;
+}
+.heart-btn:hover, .heart-btn.liked { color: #e04040; border-color: #e04040; }
+
+.add-btn {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.35);
+  color: var(--wit);
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.add-btn:hover { background: var(--goud); border-color: var(--goud); color: var(--zwart); }
+
+
+/* product grid */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+
+/* Sectie Header */
+
+.sectie-hoofd {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.sectie-hoofd h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.sectie-hoofd p { color: var(--grijs); font-size: 0.88rem; }
+
+.goud-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--goud);
+  margin-bottom: 10px;
+}
+
+/*sterren*/
+.ster-vol { color: var(--goud); }
+.ster-leeg { color: rgba(255,255,255,0.18); }
+
+
+/*footer*/
+
+footer {
+  background: var(--grijs-donker);
+  border-top: 1px solid rgba(201,168,76,0.12);
+  padding: 32px 28px;
+  margin-top: 80px;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.footer-logo { font-family: var(--font-serif); font-size: 1.15rem; }
+.footer-logo span { color: var(--goud); }
+footer p { color: var(--grijs); font-size: 0.78rem; }
+.footer-links { display: flex; gap: 18px; }
+.footer-links a { color: var(--grijs); font-size: 0.78rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--goud); }
+
+
+/* hero */
+
+#hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--donker);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/diorreclame.webp') center/cover no-repeat;
+  z-index: 0;
+}
+.hero-verduistering {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.6) 55%, rgba(8,8,8,0.15) 100%);
+  z-index: 1;
+}
+.hero-tekst {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 28px 60px;
+}
+.hero-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--goud);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+.hero-tekst h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+.hero-tekst h1 em { color: var(--goud); font-style: italic; }
+.hero-sub {
+  max-width: 400px;
+  font-size: 0.94rem;
+  color: rgba(240,236,226,0.65);
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+.hero-knoppen { display: flex; gap: 12px; flex-wrap: wrap; }
+
+
+/* merken strip*/
+
+.merken-strip {
+  background: var(--grijs-donker);
+  border-top: 1px solid rgba(201,168,76,0.12);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  padding: 13px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* fade links en rechts */
+.merken-strip::before,
+.merken-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.merken-strip::before { left: 0; background: linear-gradient(to right, var(--grijs-donker), transparent); }
+.merken-strip::after  { right: 0; background: linear-gradient(to left, var(--grijs-donker), transparent); }
+
+/* links naar rechts = van -50% naar 0 */
+.merken-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  white-space: nowrap;
+  animation: ticker-ltr 32s linear infinite;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.merken-strip:hover .merken-ticker { animation-play-state: paused; }
+
+.merken-ticker span { color: rgba(201,168,76,0.55); flex-shrink: 0; }
+.merken-ticker .scheidsteken { color: rgba(255,255,255,0.15); font-size: 0.55rem; }
+
+@keyframes ticker-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+
+/* producten sectie */
+
+#producten-sectie {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 28px;
+}
+
+
+/* over ons */
+
+#over-ons {
+  background: var(--grijs-donker);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 28px;
+}
+
+.over-ons-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.over-tekst h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.over-tekst p {
+  color: rgba(240,236,226,0.65);
+  font-size: 0.92rem;
+  line-height: 1.78;
+  margin-bottom: 14px;
+}
+
+.over-figuur {
+  aspect-ratio: 16/9; 
+  border: 1px solid rgba(255, 187, 0, 0.25);
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.over-figuur img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+/* decoratieve lijn is verwijderd functie is er nog voor indien wijzigingen nodig */
+.over-figuur::before {
+  display: none;
+}
+
+.over-figuur-inhoud {
+  text-align: center;
+  color: rgba(201,168,76,0.3);
+}
+.over-figuur-inhoud span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+.over-figuur-inhoud p {
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.4);
+}
+
+
+/* contact van index*/
+
+#contact {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 28px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 50px;
+  align-items: start;
+  margin-top: 46px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-blok {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.contact-blok .icon { font-size: 1.2rem; margin-top: 2px; }
+.contact-blok strong { display: block; font-weight: 500; font-size: 0.83rem; margin-bottom: 2px; }
+.contact-blok p { color: var(--grijs); font-size: 0.82rem; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.contact-form input,
+.contact-form textarea {
+  background: var(--grijs-donker);
+  border: 1px solid var(--border);
+  color: var(--wit);
+  padding: 11px 15px;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: rgba(201,168,76,0.45); }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: rgba(255,255,255,0.25); }
+.contact-form textarea { resize: vertical; }
+
+
+/* product detail*/
+
+.product-pagina {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 100px 28px 80px;
+}
+
+nav.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 36px;
+  font-size: 0.74rem;
+  color: var(--grijs);
+}
+nav.breadcrumb a { color: var(--grijs); transition: color 0.2s; }
+nav.breadcrumb a:hover { color: var(--goud); }
+nav.breadcrumb .pijl { opacity: 0.35; }
+nav.breadcrumb .huidig { color: rgba(240,236,226,0.5); }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 70px;
+}
+
+/*foto kolom*/
+.foto-kolom { display: flex; flex-direction: column; gap: 12px; }
+
+.hoofd-foto {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--grijs-donker);
+}
+.hoofd-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.hoofd-foto:hover img { transform: scale(1.04); }
+
+.thumb-rij { display: flex; gap: 10px; }
+.thumb {
+  width: 76px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.thumb:hover { border-color: rgba(201,168,76,0.4); }
+.thumb.actief { border-color: var(--goud); }
+
+/*info kolom*/
+.info-kolom { position: sticky; top: 90px; }
+
+.product-merk {
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--goud);
+  margin-bottom: 8px;
+}
+.product-naam {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+.product-ml-type {
+  font-size: 0.8rem;
+  color: var(--grijs);
+  margin-bottom: 16px;
+}
+
+.score-rij {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 0.78rem;
+  color: var(--grijs);
+}
+
+.prijs-blok {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+.prijs-groot {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+}
+.prijs-oud-groot {
+  font-size: 1rem;
+  color: var(--grijs);
+  text-decoration: line-through;
+}
+.korting-badge {
+  background: var(--goud);
+  color: var(--zwart);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 8px;
+}
+
+.beschrijving {
+  color: rgba(240,236,226,0.68);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+/*geuren*/
+.noten-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.noot {
+  background: var(--grijs-donker);
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: center;
+}
+.noot-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--goud);
+  margin-bottom: 5px;
+}
+.noot-waarde { font-size: 0.75rem; color: rgba(240,236,226,0.7); line-height: 1.4; }
+
+/*cart rij*/
+.cart-rij {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.aantal-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+}
+.aantal-btn {
+  width: 36px;
+  height: 46px;
+  background: transparent;
+  border: none;
+  color: var(--wit);
+  font-size: 1.1rem;
+  transition: background 0.15s;
+}
+.aantal-btn:hover { background: rgba(255,255,255,0.06); }
+#aantalInput {
+  width: 40px;
+  height: 46px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--wit);
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.cart-toevoeg-btn {
+  flex: 1;
+  height: 46px;
+  background: var(--goud);
+  border: none;
+  color: var(--zwart);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.cart-toevoeg-btn:hover { background: var(--goud-hover); }
+
+.geur-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+.geur-tag {
+  padding: 4px 11px;
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--grijs);
+}
+
+/*reviews sectie*/
+.reviews-sectie {
+  border-top: 1px solid var(--border);
+  padding-top: 50px;
+  margin-bottom: 60px;
+}
+.reviews-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.reviews-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+}
+.gem-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gem-getal {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--goud);
+  line-height: 1;
+}
+
+.reviews-lijst { display: flex; flex-direction: column; gap: 16px; }
+
+.review-kaart {
+  background: var(--grijs-donker);
+  border: 1px solid var(--border);
+  padding: 20px 22px;
+}
+.review-kaart header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.review-kaart header strong { font-size: 0.88rem; font-weight: 500; }
+.review-kaart header time { font-size: 0.72rem; color: var(--grijs); }
+.review-sterren { font-size: 0.82rem; margin-bottom: 8px; }
+.review-kaart > p { color: rgba(240,236,226,0.65); font-size: 0.86rem; line-height: 1.65; }
+
+
+.gerelateerd-sectie { margin-bottom: 60px; }
+.gerelateerd-sectie h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 22px;
+}
+
+.niet-gevonden {
+  color: var(--grijs);
+  text-align: center;
+  padding: 80px 0 20px;
+}
+
+
+/*Afrekennen */
+
+.checkout-pagina {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 28px 80px;
+}
+.checkout-pagina > h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  margin-bottom: 8px;
+}
+
+/* stappen */
+.stappen {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 12px 0 36px;
+}
+.stap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grijs);
+}
+.stap.actief { color: var(--goud); }
+.stap.klaar { color: rgba(201,168,76,0.45); }
+.stap-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.64rem;
+}
+.stap-lijn { width: 28px; height: 1px; background: var(--border); margin: 0 8px; }
+
+/* layout */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+  align-items: start;
+}
+
+.checkout-form { display: flex; flex-direction: column; gap: 22px; }
+
+.form-blok {
+  background: var(--grijs-donker);
+  border: 1px solid var(--border);
+  padding: 22px 20px;
+}
+.form-blok h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-rij {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+  margin-bottom: 11px;
+}
+.form-rij.enkel { grid-template-columns: 1fr; }
+.form-rij.breed-links { grid-template-columns: 2fr 1fr; }
+
+.form-groep { display: flex; flex-direction: column; gap: 5px; }
+.form-groep label {
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,236,226,0.42);
+}
+.form-groep input,
+.form-groep select {
+  background: var(--zwart);
+  border: 1px solid var(--border);
+  color: var(--wit);
+  padding: 10px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-groep input:focus,
+.form-groep select:focus { border-color: rgba(201,168,76,0.45); }
+.form-groep input::placeholder { color: rgba(255,255,255,0.2); }
+.form-groep input.fout { border-color: var(--rood); }
+.fout-tekst { font-size: 0.66rem; color: var(--rood); min-height: 14px; }
+
+
+/* betaal opties */
+.betaal-opties { display: flex; flex-direction: column; gap: 8px; }
+.betaal-optie {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.betaal-optie:hover { border-color: rgba(201,168,76,0.3); }
+.betaal-optie.actief { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.04); }
+.betaal-optie input[type="radio"] { accent-color: var(--goud); flex-shrink: 0; }
+.betaal-icon { font-size: 1.15rem; }
+.betaal-naam { font-size: 0.85rem; }
+.betaal-sub { font-size: 0.68rem; color: var(--grijs); margin-top: 1px; }
+
+/* order samenvatting */
+.order-samen {
+  background: var(--grijs-donker);
+  border: 1px solid var(--border);
+  padding: 20px 18px;
+  position: sticky;
+  top: 88px;
+}
+.order-samen h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+#orderLijst {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  max-height: 260px;
+  overflow-y: auto;
+}
+#orderLijst li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#orderLijst li img {
+  width: 46px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: #111;
+  flex-shrink: 0;
+}
+#orderLijst li span { flex: 1; font-size: 0.8rem; line-height: 1.3; }
+#orderLijst li span strong { display: block; }
+#orderLijst li span small { color: var(--grijs); font-size: 0.68rem; }
+.order-prijs { font-size: 0.82rem; white-space: nowrap; }
+
+.samen-rij {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: rgba(240,236,226,0.65);
+  margin-bottom: 7px;
+}
+.samen-rij.eindtotaal {
+  font-size: 0.94rem;
+  color: var(--wit);
+  border-top: 1px solid var(--border);
+  padding-top: 11px;
+  margin-top: 5px;
+}
+.samen-rij.eindtotaal strong {
+  font-family: var(--font-serif);
+  font-size: 1.32rem;
+  color: var(--goud);
+}
+.gratis { color: var(--goud); }
+
+.betaal-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--goud);
+  border: none;
+  color: var(--zwart);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 14px;
+  transition: background 0.2s;
+}
+.betaal-btn:hover { background: var(--goud-hover); }
+.betaal-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.veilig-tekst {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--grijs);
+  margin-top: 9px;
+}
+
+/*leeg cart + bevestiging*/
+#leegCart, #bevestiging {
+  text-align: center;
+  padding: 70px 0;
+}
+#leegCart p { color: var(--grijs); margin-bottom: 18px; }
+
+.check-cirkel {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 2px solid var(--goud);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.8rem;
+  color: var(--goud);
+  animation: popIn 0.4s ease;
+}
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+#bevestiging h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+#bevestiging p {
+  color: rgba(240,236,226,0.65);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+#bestelnr {
+  display: inline-block;
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.28);
+  color: var(--goud);
+  padding: 6px 18px;
+  font-size: 0.74rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 14px 0 24px;
+}
+.bevestig-knoppen { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+
+/*Deals PAGINA*/
+
+.deals-hero {
+  padding: 108px 28px 48px;
+  background: var(--grijs-donker);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.deals-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.055) 0%, transparent 65%);
+  pointer-events: none;
+}
+.deals-hero-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+
+/*countdown*/
+.countdown-rij {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.cd-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grijs);
+  margin-right: 5px;
+}
+.cd-blok-wrap { text-align: center; }
+.cd-blok {
+  background: var(--goud);
+  color: var(--zwart);
+  min-width: 44px;
+  padding: 5px 10px;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: block;
+}
+.cd-blok-wrap small {
+  font-size: 0.54rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grijs);
+  margin-top: 3px;
+  display: block;
+}
+.cd-sep { color: var(--goud); font-size: 1.2rem; font-weight: 600; margin-top: -8px; }
+
+.deals-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+.deals-hero h1 em { color: var(--goud); font-style: italic; }
+.deals-hero > .deals-hero-inner > p {
+  color: rgba(240,236,226,0.6);
+  font-size: 0.9rem;
+  max-width: 400px;
+}
+
+/*deals ticken*/
+.deals-ticker {
+  background: var(--goud);
+  color: var(--zwart);
+  padding: 8px 0;
+  overflow: hidden;
+}
+.deals-ticker-track {
+  display: inline-flex;
+  gap: 44px;
+  white-space: nowrap;
+  animation: ticker-rtl 24s linear infinite;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+@keyframes ticker-rtl {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* filter ballk*/
+.filter-balk {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.filter-rij {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.filter-groep-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grijs);
+  margin-bottom: 8px;
+}
+.filter-knoppen { display: flex; gap: 7px; flex-wrap: wrap; }
+
+.filter-btn {
+  padding: 7px 13px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: rgba(240,236,226,0.5);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: rgba(201,168,76,0.3); color: var(--wit); }
+.filter-btn.actief { background: var(--goud); border-color: var(--goud); color: var(--zwart); }
+
+.resultaat-teller { color: var(--grijs); font-size: 0.76rem; align-self: flex-end; }
+
+/*deals grid*/
+.deals-sectie {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 26px 28px 80px;
+}
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.sale-badge { background: var(--rood); color: var(--wit); top: 0; right: 0; left: auto; }
+
+.bespaar-tag {
+  font-size: 0.7rem;
+  color: var(--goud);
+  margin-bottom: 10px;
+}
+
+.voorraad-wrap { margin-bottom: 10px; }
+.voorraad-balk {
+  height: 3px;
+  background: var(--goud);
+  margin-bottom: 4px;
+  transition: width 0.3s;
+}
+.voorraad-wrap small { font-size: 0.66rem; color: var(--grijs); }
+.voorraad-laag { color: var(--rood) !important; }
+
+#geenResultaat {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--grijs);
+  font-size: 0.9rem;
+}
+#geenResultaat span { font-size: 2rem; display: block; margin-bottom: 10px; }
+
+
+/*Responsive*/
+
+@media (max-width: 900px) {
+  nav#mainNav { display: none; }
+  .hamburger { display: block; }
+
+  .over-ons-inner { grid-template-columns: 1fr; }
+  .over-figuur { display: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .detail-grid { grid-template-columns: 1fr; gap: 36px; }
+  .info-kolom { position: static; }
+  .checkout-layout { grid-template-columns: 1fr; }
+  .order-samen { position: static; }
+  .filter-rij { flex-direction: column; }
+}
+
+@media (max-width: 600px) {
+  .nav-inner { padding: 0 18px; }
+  .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .deals-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .noten-grid { grid-template-columns: 1fr; }
+  #cartPanel { width: 100%; right: -100%; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+  .hero-tekst h1 { font-size: 2.8rem; }
+  .form-rij { grid-template-columns: 1fr; }
+  .form-rij.breed-links { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 380px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .deals-grid { grid-template-columns: 1fr; }
+}

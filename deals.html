@@ -1,0 +1,152 @@
+// auteur : Yusuf Simsek
+// L'Essence D'Or - Parfum Webshop
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deals — L'Essence D'Or</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="navbar">
+  <div class="nav-inner">
+    <div id="logo">
+      <a href="index.html">L'Essence <span>D'Or</span></a>
+    </div>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="index.html#producten-sectie">Producten</a>
+      <a href="deals.html" class="deals-link actief">Deals </a>
+    </nav>
+    <div class="nav-rechts">
+      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#producten-sectie">Producten</a>
+  <a href="deals.html">Deals </a>
+  <a href="checkout.html">Afrekenen</a>
+</nav>
+
+
+<section class="deals-hero">
+  <div class="deals-hero-inner">
+
+    <div class="countdown-rij" aria-label="Afteltimer aanbieding">
+      <span class="cd-label">Aanbieding eindigt over</span>
+      <div class="cd-blok-wrap">
+        <span class="cd-blok" id="cdU">00</span>
+        <small>uur</small>
+      </div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-blok-wrap">
+        <span class="cd-blok" id="cdM">00</span>
+        <small>min</small>
+      </div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-blok-wrap">
+        <span class="cd-blok" id="cdS">00</span>
+        <small>sec</small>
+      </div>
+    </div>
+
+    <h1>Flash <em>Sale</em></h1>
+    <p>Tijdelijk tot 30% korting op geselecteerde luxe parfums. Op = Op.</p>
+
+  </div>
+</section>
+
+
+<aside class="deals-ticker" aria-hidden="true">
+  <div class="deals-ticker-track" id="dealsTicker"></div>
+</aside>
+
+
+<div class="filter-balk">
+
+  <div class="filter-rij">
+    <div>
+      <p class="filter-groep-label">Sorteer op</p>
+      <div class="filter-knoppen" id="sortFilter">
+        <button class="filter-btn actief" data-sort="standaard">Aanbevolen</button>
+        <button class="filter-btn" data-sort="prijs-laag">Prijs ↑</button>
+        <button class="filter-btn" data-sort="prijs-hoog">Prijs ↓</button>
+        <button class="filter-btn" data-sort="korting-hoog">Meeste korting</button>
+        <button class="filter-btn" data-sort="ml">Inhoud (ml)</button>
+      </div>
+    </div>
+    <p class="resultaat-teller" id="aantalTeller"></p>
+  </div>
+
+  <div class="filter-rij">
+    <div>
+      <p class="filter-groep-label">Filter op merk</p>
+      <div class="filter-knoppen" id="merkFilter">
+        <button class="filter-btn actief" data-merk="alle">Alle merken</button>
+      </div>
+    </div>
+    <div>
+      <p class="filter-groep-label">Filter op geur</p>
+      <div class="filter-knoppen" id="geurFilter">
+        <button class="filter-btn actief" data-geur="alle">Alle geuren</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<main class="deals-sectie">
+  <ul class="deals-grid" id="dealsGrid"></ul>
+  <p id="geenResultaat" hidden>
+    <span>🔍</span>
+    Geen aanbiedingen gevonden met deze filter.
+  </p>
+</main>
+
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-logo">L'Essence <span>D'Or</span></p>
+    <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
+    <nav class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Voorwaarden</a>
+    </nav>
+  </div>
+</footer>
+
+
+<aside id="cartPanel">
+  <div class="cart-header">
+    <h4>Jouw winkelwagen</h4>
+    <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
+  </div>
+  <ul id="cartLijst"></ul>
+  <div id="cartSummary">
+    <p id="verzendInfo"></p>
+    <div class="cart-totaal-rij">
+      <span>Totaal</span>
+      <strong id="cartTotaal">€0,00</strong>
+    </div>
+    <a href="checkout.html" class="btn-naar-checkout">Afrekenen →</a>
+    <button id="doorwinkelBtn">← Verder winkelen</button>
+  </div>
+</aside>
+
+<div id="cartOverlay"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+<script src="deals.js"></script>
+
+</body>
+</html>
