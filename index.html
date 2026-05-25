@@ -6,9 +6,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L'Essence D'Or — Luxury Parfum</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- SEO: Primaire meta -->
+  <title>L'Essence D'Or — Luxe Parfum Webshop | Authentieke Designer Geuren</title>
+  <meta name="description" content="Koop authentieke luxe parfums van Dior, Chanel, Tom Ford, Creed en meer. Gratis verzending vanaf €75. Altijd 100% origineel, direct geleverd vanuit Amsterdam.">
+  <meta name="keywords" content="luxe parfum, designer parfum kopen, Dior Sauvage, Bleu de Chanel, Tom Ford Black Orchid, Creed Aventus, YSL parfum, parfum webshop Nederland">
+  <meta name="author" content="Yusuf Simsek — L'Essence D'Or">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lessencedor.nl/">
+
+  <!-- SEO: Open Graph (Facebook / LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lessencedor.nl/">
+  <meta property="og:title" content="L'Essence D'Or — Luxe Parfum Webshop">
+  <meta property="og:description" content="Authentieke designer parfums van de grootste merken. Dior, Chanel, Tom Ford, Creed & meer. Gratis verzending vanaf €75.">
+  <meta property="og:image" content="https://lessencedor.nl/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="L'Essence D'Or">
+
+  <!-- SEO: Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="L'Essence D'Or — Luxe Parfum Webshop">
+  <meta name="twitter:description" content="Authentieke designer parfums. Dior, Chanel, Tom Ford & meer. Gratis verzending vanaf €75.">
+  <meta name="twitter:image" content="https://lessencedor.nl/images/og-image.jpg">
+
+  <!-- Assets -->
+  <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- SEO: Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://lessencedor.nl/#website",
+        "url": "https://lessencedor.nl/",
+        "name": "L'Essence D'Or",
+        "description": "Luxe parfum webshop met authentieke designer geuren",
+        "inLanguage": "nl-NL",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://lessencedor.nl/?zoek={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://lessencedor.nl/#organization",
+        "name": "L'Essence D'Or",
+        "url": "https://lessencedor.nl/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lessencedor.nl/images/L'Essence D'Or.png"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+31-20-123-4567",
+          "contactType": "customer service",
+          "areaServed": ["NL", "BE", "DE"],
+          "availableLanguage": ["Dutch"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Keizersgracht 12",
+          "addressLocality": "Amsterdam",
+          "addressCountry": "NL"
+        },
+        "sameAs": []
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://lessencedor.nl/#webpage",
+        "url": "https://lessencedor.nl/",
+        "name": "L'Essence D'Or — Luxe Parfum Webshop",
+        "isPartOf": { "@id": "https://lessencedor.nl/#website" },
+        "about": { "@id": "https://lessencedor.nl/#organization" },
+        "description": "Koop authentieke luxe parfums van Dior, Chanel, Tom Ford, Creed en meer."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -18,31 +99,31 @@
       <a href="index.html">L'Essence <span>D'Or</span></a>
     </div>
 
-    <nav id="mainNav">
-      <a href="index.html" class="actief">Home</a>
+    <nav id="mainNav" aria-label="Hoofdnavigatie">
+      <a href="index.html" class="actief" aria-current="page">Home</a>
       <a href="index.html#producten-sectie">Producten</a>
       <a href="index.html#over-ons">Over ons</a>
       <a href="index.html#contact">Contact</a>
-      <a href="deals.html" class="deals-link">Deals </a>
+      <a href="deals.html" class="deals-link">Deals 🔥</a>
     </nav>
 
     <div class="nav-rechts">
-      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+      <button id="cartBtn" aria-label="Winkelwagen openen">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu openen/sluiten" aria-expanded="false">☰</button>
     </div>
   </div>
 </header>
 
-<nav id="mobileMenu">
+<nav id="mobileMenu" aria-label="Mobiele navigatie">
   <a href="index.html">Home</a>
   <a href="index.html#producten-sectie">Producten</a>
   <a href="index.html#over-ons">Over ons</a>
   <a href="index.html#contact">Contact</a>
-  <a href="deals.html">Deals </a>
+  <a href="deals.html">Deals 🔥</a>
 </nav>
 
 
-<section id="hero">
+<section id="hero" aria-label="Hero banner">
   <div class="hero-bg"></div>
   <div class="hero-verduistering"></div>
   <div class="hero-tekst">
@@ -57,7 +138,7 @@
 </section>
 
 
-<aside class="merken-strip" aria-label="Merken">
+<aside class="merken-strip" aria-label="Merken die wij voeren">
   <div class="merken-ticker" aria-hidden="true">
     <span>✦ Dior</span><span class="scheidsteken">·</span>
     <span>Chanel</span><span class="scheidsteken">·</span>
@@ -96,65 +177,67 @@
     <h2>Onze Collectie</h2>
     <p>De meest populaire geuren van dit moment</p>
   </div>
-  <ul class="product-grid" id="productGrid"></ul>
+  <ul class="product-grid" id="productGrid" aria-label="Productoverzicht"></ul>
 </main>
 
 
-<section id="over-ons">
+<section id="over-ons" aria-labelledby="over-ons-titel">
   <div class="over-ons-inner">
     <article class="over-tekst">
       <span class="goud-label">Ons verhaal</span>
-      <h2>Meer dan<br>alleen parfum</h2>
+      <h2 id="over-ons-titel">Meer dan<br>alleen parfum</h2>
       <p>L'Essence D'Or begon als een simpel idee: de mooiste geuren ter wereld toegankelijk maken voor iedereen. Geen dure warenhuizen, geen wachtrijen.</p>
       <p>Elke fles die wij verkopen is 100% authentiek. We werken uitsluitend met officiële leveranciers en zijn er trots op dat onze klanten altijd terugkomen.</p>
       <a href="#producten-sectie" class="btn-goud">Shop nu</a>
     </article>
     <figure class="over-figuur">
       <div class="over-figuur-inhoud">
-        <span><img src="images/L'Essence D'Or.png" alt="L'Essence D'Or"></span>
-        
+        <span><img src="images/L'Essence D'Or.png" alt="L'Essence D'Or logo" width="300" height="300" loading="lazy"></span>
       </div>
     </figure>
   </div>
 </section>
 
 
-<section id="contact">
+<section id="contact" aria-labelledby="contact-titel">
   <div class="sectie-hoofd">
     <span class="goud-label">Bereik ons</span>
-    <h2>Contact</h2>
+    <h2 id="contact-titel">Contact</h2>
     <p>Vragen? Wij helpen je graag</p>
   </div>
 
   <div class="contact-grid">
     <address class="contact-info">
       <div class="contact-blok">
-        <span class="icon"></span>
+        <span class="icon" aria-hidden="true">✉</span>
         <div>
           <strong>Email</strong>
-          <p>info@lessencedor.nl</p>
+          <p><a href="mailto:info@lessencedor.nl">info@lessencedor.nl</a></p>
         </div>
       </div>
       <div class="contact-blok">
-        <span class="icon"></span>
+        <span class="icon" aria-hidden="true">📞</span>
         <div>
           <strong>Telefoon</strong>
-          <p>+31 20 123 4567</p>
+          <p><a href="tel:+31201234567">+31 20 123 4567</a></p>
         </div>
       </div>
       <div class="contact-blok">
-        <span class="icon">📍</span>
+        <span class="icon" aria-hidden="true">📍</span>
         <div>
           <strong>Adres</strong>
-          <p>Keizersgracht 12, Amsterdam</p>
+          <p>Westerkade 1B, 3016 CL Rotterdam</p>
         </div>
       </div>
     </address>
 
-    <form id="contactForm" class="contact-form" novalidate>
-      <input type="text" placeholder="Jouw naam" required>
-      <input type="email" placeholder="E-mailadres" required>
-      <textarea placeholder="Je bericht..." rows="5" required></textarea>
+    <form id="contactForm" class="contact-form" novalidate aria-label="Contactformulier">
+      <label for="contact-naam" class="visually-hidden">Jouw naam</label>
+      <input type="text" id="contact-naam" placeholder="Jouw naam" required autocomplete="name">
+      <label for="contact-email" class="visually-hidden">E-mailadres</label>
+      <input type="email" id="contact-email" placeholder="E-mailadres" required autocomplete="email">
+      <label for="contact-bericht" class="visually-hidden">Je bericht</label>
+      <textarea id="contact-bericht" placeholder="Je bericht..." rows="5" required></textarea>
       <button type="submit" class="btn-goud">Verstuur</button>
     </form>
   </div>
@@ -165,7 +248,7 @@
   <div class="footer-inner">
     <p class="footer-logo">L'Essence <span>D'Or</span></p>
     <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Voettekst navigatie">
       <a href="#">Privacy</a>
       <a href="#">Voorwaarden</a>
       <a href="#">Retourneren</a>
@@ -174,12 +257,12 @@
 </footer>
 
 
-<aside id="cartPanel">
+<aside id="cartPanel" aria-label="Winkelwagen">
   <div class="cart-header">
     <h4>Jouw winkelwagen</h4>
     <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
   </div>
-  <ul id="cartLijst"></ul>
+  <ul id="cartLijst" aria-label="Items in winkelwagen"></ul>
   <div id="cartSummary">
     <p id="verzendInfo"></p>
     <div class="cart-totaal-rij">
@@ -195,7 +278,7 @@
 <div id="toast" role="status" aria-live="polite"></div>
 
 
-<script src="script.js"></script>
+<script src="assets/js/script.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("productGrid")
@@ -206,10 +289,10 @@
       li.className = "product-card"
       li.innerHTML = `
         ${k ? '<span class="badge">-' + k + '%</span>' : ""}
-        <button class="heart-btn" aria-label="Wishlist">♡</button>
+        <button class="heart-btn" aria-label="Toevoegen aan verlanglijst">♡</button>
         <a href="product.html?id=${p.id}">
           <figure>
-            <img src="${p.img}" alt="${p.naam}" loading="lazy">
+            <img src="${p.img}" alt="${p.naam} - ${p.merk} ${p.ml}ml parfum" loading="lazy" width="300" height="300">
           </figure>
         </a>
         <section class="kaart-info">

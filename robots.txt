@@ -1,0 +1,11 @@
+# L'Essence D'Or — robots.txt
+# https://lessencedor.nl/
+
+User-agent: *
+Allow: /
+
+# Checkout en privé pagina's niet indexeren
+Disallow: /checkout.html
+
+# Sitemap locatie
+Sitemap: https://lessencedor.nl/sitemap.xml

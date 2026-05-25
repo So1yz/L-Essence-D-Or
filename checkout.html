@@ -1,13 +1,39 @@
 <!-- Auteur : Yusuf Simsek 
  L'Essence D'Or - Parfum Webshop  -->
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══ SEO: Primaire meta ═══ -->
   <title>Afrekenen — L'Essence D'Or</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Rond je bestelling af bij L'Essence D'Or. Veilig betalen via iDEAL, creditcard of PayPal. Gratis verzending vanaf €75.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://lessencedor.nl/checkout.html">
+
+  <!-- ═══ Assets ═══ -->
+  <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ═══ SEO: Schema.org JSON-LD ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CheckoutPage",
+    "url": "https://lessencedor.nl/checkout.html",
+    "name": "Afrekenen — L'Essence D'Or",
+    "isPartOf": { "@id": "https://lessencedor.nl/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lessencedor.nl/" },
+        { "@type": "ListItem", "position": 2, "name": "Afrekenen", "item": "https://lessencedor.nl/checkout.html" }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -16,23 +42,23 @@
     <div id="logo">
       <a href="index.html">L'Essence <span>D'Or</span></a>
     </div>
-    <nav id="mainNav">
+    <nav id="mainNav" aria-label="Hoofdnavigatie">
       <a href="index.html">Home</a>
       <a href="index.html#producten-sectie">Producten</a>
       <a href="deals.html" class="deals-link">Deals 🔥</a>
     </nav>
     <div class="nav-rechts">
-      <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+      <button id="cartBtn" aria-label="Winkelwagen openen">🛒 <span id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu openen/sluiten" aria-expanded="false">☰</button>
     </div>
   </div>
 </header>
 
-<nav id="mobileMenu">
+<nav id="mobileMenu" aria-label="Mobiele navigatie">
   <a href="index.html">Home</a>
   <a href="index.html#producten-sectie">Producten</a>
   <a href="deals.html">Deals 🔥</a>
-  <a href="checkout.html">Afrekenen</a>
+  <a href="checkout.html" aria-current="page">Afrekenen</a>
 </nav>
 
 
@@ -40,17 +66,17 @@
 
   <h1>Afrekenen</h1>
 
-  <div class="stappen">
-    <span class="stap klaar"><span class="stap-num">✓</span> Winkelmand</span>
-    <span class="stap-lijn"></span>
-    <span class="stap actief"><span class="stap-num">2</span> Gegevens</span>
-    <span class="stap-lijn"></span>
-    <span class="stap"><span class="stap-num">3</span> Betaling</span>
-  </div>
+  <ol class="stappen" aria-label="Bestelstappen">
+    <li class="stap klaar"><span class="stap-num" aria-hidden="true">✓</span> Winkelmand</li>
+    <span class="stap-lijn" aria-hidden="true"></span>
+    <li class="stap actief" aria-current="step"><span class="stap-num" aria-hidden="true">2</span> Gegevens</li>
+    <span class="stap-lijn" aria-hidden="true"></span>
+    <li class="stap"><span class="stap-num" aria-hidden="true">3</span> Betaling</li>
+  </ol>
 
 
   <!-- leeg cart -->
-  <section id="leegCart" hidden>
+  <section id="leegCart" hidden aria-live="polite">
     <p>Je winkelwagen is leeg.</p>
     <a href="index.html" class="btn-goud">Bekijk producten</a>
   </section>
@@ -59,29 +85,29 @@
   <!-- checkout layout -->
   <div class="checkout-layout" id="checkoutLayout">
 
-    <form class="checkout-form" id="checkoutForm" novalidate>
+    <form class="checkout-form" id="checkoutForm" novalidate aria-label="Bestelformulier">
 
       <fieldset class="form-blok">
-        <legend><h3>Persoonlijke gegevens</h3></legend>
+        <legend><h2>Persoonlijke gegevens</h2></legend>
 
         <div class="form-rij">
           <div class="form-groep">
             <label for="voornaam">Voornaam *</label>
-            <input type="text" id="voornaam" placeholder="Jan" autocomplete="given-name">
-            <span class="fout-tekst" id="fout-voornaam"></span>
+            <input type="text" id="voornaam" placeholder="Jan" autocomplete="given-name" aria-required="true" aria-describedby="fout-voornaam">
+            <span class="fout-tekst" id="fout-voornaam" role="alert"></span>
           </div>
           <div class="form-groep">
             <label for="achternaam">Achternaam *</label>
-            <input type="text" id="achternaam" placeholder="de Vries" autocomplete="family-name">
-            <span class="fout-tekst" id="fout-achternaam"></span>
+            <input type="text" id="achternaam" placeholder="de Vries" autocomplete="family-name" aria-required="true" aria-describedby="fout-achternaam">
+            <span class="fout-tekst" id="fout-achternaam" role="alert"></span>
           </div>
         </div>
 
         <div class="form-rij enkel">
           <div class="form-groep">
             <label for="email">E-mailadres *</label>
-            <input type="email" id="email" placeholder="jan@email.nl" autocomplete="email">
-            <span class="fout-tekst" id="fout-email"></span>
+            <input type="email" id="email" placeholder="jan@email.nl" autocomplete="email" aria-required="true" aria-describedby="fout-email">
+            <span class="fout-tekst" id="fout-email" role="alert"></span>
           </div>
         </div>
 
@@ -95,21 +121,21 @@
 
 
       <fieldset class="form-blok">
-        <legend><h3>Bezorgadres</h3></legend>
+        <legend><h2>Bezorgadres</h2></legend>
 
         <div class="form-rij enkel">
           <div class="form-groep">
             <label for="straat">Straat *</label>
-            <input type="text" id="straat" placeholder="Keizersgracht" autocomplete="address-line1">
-            <span class="fout-tekst" id="fout-straat"></span>
+            <input type="text" id="straat" placeholder="Keizersgracht" autocomplete="address-line1" aria-required="true" aria-describedby="fout-straat">
+            <span class="fout-tekst" id="fout-straat" role="alert"></span>
           </div>
         </div>
 
         <div class="form-rij breed-links">
           <div class="form-groep">
             <label for="huisnr">Huisnummer *</label>
-            <input type="text" id="huisnr" placeholder="12A">
-            <span class="fout-tekst" id="fout-huisnr"></span>
+            <input type="text" id="huisnr" placeholder="12A" aria-required="true" aria-describedby="fout-huisnr">
+            <span class="fout-tekst" id="fout-huisnr" role="alert"></span>
           </div>
           <div class="form-groep">
             <label for="toevoeging">Toevoeging</label>
@@ -120,13 +146,13 @@
         <div class="form-rij">
           <div class="form-groep">
             <label for="postcode">Postcode *</label>
-            <input type="text" id="postcode" placeholder="1234 AB" maxlength="7" autocomplete="postal-code">
-            <span class="fout-tekst" id="fout-postcode"></span>
+            <input type="text" id="postcode" placeholder="1234 AB" maxlength="7" autocomplete="postal-code" aria-required="true" aria-describedby="fout-postcode">
+            <span class="fout-tekst" id="fout-postcode" role="alert"></span>
           </div>
           <div class="form-groep">
             <label for="stad">Stad *</label>
-            <input type="text" id="stad" placeholder="Amsterdam" autocomplete="address-level2">
-            <span class="fout-tekst" id="fout-stad"></span>
+            <input type="text" id="stad" placeholder="Amsterdam" autocomplete="address-level2" aria-required="true" aria-describedby="fout-stad">
+            <span class="fout-tekst" id="fout-stad" role="alert"></span>
           </div>
         </div>
 
@@ -146,12 +172,12 @@
 
 
       <fieldset class="form-blok">
-        <legend><h3>Betaalmethode</h3></legend>
+        <legend><h2>Betaalmethode</h2></legend>
 
-        <div class="betaal-opties">
+        <div class="betaal-opties" role="radiogroup" aria-label="Kies betaalmethode">
           <label class="betaal-optie actief">
             <input type="radio" name="betaal" value="ideal" checked>
-            <span class="betaal-icon">🏦</span>
+            <span class="betaal-icon" aria-hidden="true">🏦</span>
             <div>
               <p class="betaal-naam">iDEAL</p>
               <p class="betaal-sub">Direct betalen via jouw bank</p>
@@ -160,7 +186,7 @@
 
           <label class="betaal-optie">
             <input type="radio" name="betaal" value="creditcard">
-            <span class="betaal-icon">💳</span>
+            <span class="betaal-icon" aria-hidden="true">💳</span>
             <div>
               <p class="betaal-naam">Creditcard</p>
               <p class="betaal-sub">Visa, Mastercard, Amex</p>
@@ -169,7 +195,7 @@
 
           <label class="betaal-optie">
             <input type="radio" name="betaal" value="paypal">
-            <span class="betaal-icon">🅿️</span>
+            <span class="betaal-icon" aria-hidden="true">🅿️</span>
             <div>
               <p class="betaal-naam">PayPal</p>
               <p class="betaal-sub">Veilig betalen via PayPal</p>
@@ -178,7 +204,7 @@
 
           <label class="betaal-optie">
             <input type="radio" name="betaal" value="achteraf">
-            <span class="betaal-icon">📃</span>
+            <span class="betaal-icon" aria-hidden="true">📃</span>
             <div>
               <p class="betaal-naam">Achteraf betalen</p>
               <p class="betaal-sub">Betaal binnen 14 dagen na ontvangst</p>
@@ -191,9 +217,9 @@
 
 
     <!-- order samenvatting -->
-    <aside class="order-samen">
+    <aside class="order-samen" aria-label="Besteloverzicht">
       <h3>Jouw bestelling</h3>
-      <ul id="orderLijst"></ul>
+      <ul id="orderLijst" aria-label="Bestelde producten"></ul>
       <p class="samen-rij"><span>Subtotaal</span><span id="orderSubtotaal">—</span></p>
       <p class="samen-rij"><span>Verzendkosten</span><span id="orderVerzend">—</span></p>
       <p class="samen-rij eindtotaal"><span>Totaal</span><strong id="orderTotaal">—</strong></p>
@@ -205,7 +231,7 @@
 
 
   <!-- bevestiging scherm -->
-  <section id="bevestiging" hidden>
+  <section id="bevestiging" hidden aria-live="polite">
     <div class="check-cirkel" aria-hidden="true">✓</div>
     <h2>Bestelling geplaatst!</h2>
     <p>Bedankt voor je aankoop. Je ontvangt een bevestiging per e-mail.</p>
@@ -224,7 +250,7 @@
   <div class="footer-inner">
     <p class="footer-logo">L'Essence <span>D'Or</span></p>
     <p>© 2025 L'Essence D'Or. Alle rechten voorbehouden.</p>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Voettekst navigatie">
       <a href="#">Privacy</a>
       <a href="#">Voorwaarden</a>
     </nav>
@@ -232,12 +258,12 @@
 </footer>
 
 
-<aside id="cartPanel">
+<aside id="cartPanel" aria-label="Winkelwagen">
   <div class="cart-header">
     <h4>Jouw winkelwagen</h4>
     <button id="sluitCart" aria-label="Sluit winkelwagen">✕</button>
   </div>
-  <ul id="cartLijst"></ul>
+  <ul id="cartLijst" aria-label="Items in winkelwagen"></ul>
   <div id="cartSummary">
     <p id="verzendInfo"></p>
     <div class="cart-totaal-rij">
@@ -252,8 +278,8 @@
 <div id="cartOverlay"></div>
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js"></script>
-<script src="checkout.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/checkout.js"></script>
 
 </body>
 </html>

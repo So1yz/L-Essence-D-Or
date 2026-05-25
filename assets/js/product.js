@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const k = korting(p.prijs, p.oudePrijs)
   const gemScore = p.reviews.reduce((s, r) => s + r.score, 0) / p.reviews.length
 
+  // SEO: dynamische meta tags + JSON-LD voor dit product
+  injectProductSEO(p, gemScore)
+
   // fotos invullen via imgs array (4 plekken)
   const hoofdImg = document.getElementById("hoofdImg")
   const thumbEls = document.querySelectorAll(".thumb")
@@ -140,3 +143,77 @@ document.addEventListener("DOMContentLoaded", () => {
     gerelGrid.appendChild(artikel)
   })
 })
+
+
+// ═══ SEO: Dynamische meta tags + JSON-LD per product ═══
+function injectProductSEO(p, gemScore) {
+  const base = "https://lessencedor.nl"
+  const url = `${base}/product.html?id=${p.id}`
+  const imgUrl = `${base}/${p.imgs[0]}`
+  const beschrijving = p.beschrijving.slice(0, 155)
+  const prijs = p.prijs.toFixed(2)
+
+  // Title & description
+  document.title = `${p.naam} — ${p.merk} ${p.ml}ml | L'Essence D'Or`
+  document.querySelector('meta[name="description"]')?.setAttribute("content",
+    `Koop ${p.naam} van ${p.merk} (${p.ml}ml) bij L'Essence D'Or. ${beschrijving}`)
+
+  // Canonical
+  document.getElementById("canonicalTag")?.setAttribute("href", url)
+
+  // Open Graph
+  document.getElementById("ogUrl")?.setAttribute("content", url)
+  document.getElementById("ogTitle")?.setAttribute("content", `${p.naam} — ${p.merk} | L'Essence D'Or`)
+  document.getElementById("ogDesc")?.setAttribute("content", beschrijving)
+  document.getElementById("ogImage")?.setAttribute("content", imgUrl)
+
+  // Twitter
+  document.getElementById("twTitle")?.setAttribute("content", `${p.naam} — ${p.merk} | L'Essence D'Or`)
+  document.getElementById("twDesc")?.setAttribute("content", beschrijving)
+  document.getElementById("twImage")?.setAttribute("content", imgUrl)
+
+  // JSON-LD Product schema
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": p.naam,
+    "description": p.beschrijving,
+    "image": p.imgs.map(i => `${base}/${i}`),
+    "brand": { "@type": "Brand", "name": p.merk },
+    "offers": {
+      "@type": "Offer",
+      "url": url,
+      "priceCurrency": "EUR",
+      "price": prijs,
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "L'Essence D'Or" }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": gemScore.toFixed(1),
+      "reviewCount": p.reviews.length,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": p.reviews.map(r => ({
+      "@type": "Review",
+      "author": { "@type": "Person", "name": r.naam },
+      "reviewRating": { "@type": "Rating", "ratingValue": r.score },
+      "reviewBody": r.tekst,
+      "datePublished": r.datum
+    })),
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${base}/` },
+        { "@type": "ListItem", "position": 2, "name": "Producten", "item": `${base}/index.html#producten-sectie` },
+        { "@type": "ListItem", "position": 3, "name": p.naam, "item": url }
+      ]
+    }
+  }
+
+  const script = document.createElement("script")
+  script.type = "application/ld+json"
+  script.textContent = JSON.stringify(schema, null, 2)
+  document.head.appendChild(script)
+}
